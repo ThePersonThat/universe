@@ -8,6 +8,10 @@ import java.util.Map;
 public final class SessionUtils {
     private SessionUtils() {}
 
+    public static void do_something() {
+        // do
+    }
+
     public static User getCurrentUser(Context context) {
         return context.sessionAttribute(SessionKey.USER);
     }
