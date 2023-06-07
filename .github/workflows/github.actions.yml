@@ -38,4 +38,5 @@ jobs:
         uses: nikitasavinov/checkstyle-action@master
         with:
           level: 'Error'
+          reporter: 'github-pr-check'
           fail_on_error: true
