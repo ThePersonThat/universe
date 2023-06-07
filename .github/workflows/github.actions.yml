@@ -26,3 +26,16 @@ jobs:
         run: |
           mvn clean install --quiet
           mvn test --quiet
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run check style
+        uses: nikitasavinov/checkstyle-action@master
+        with:
+          level: 'Error'
+          fail_on_error: true
