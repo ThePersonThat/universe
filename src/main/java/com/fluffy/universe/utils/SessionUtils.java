@@ -2,6 +2,7 @@ package com.fluffy.universe.utils;
 
 import com.fluffy.universe.models.User;
 import io.javalin.http.Context;
+import org.eclipse.jetty.server.Server;
 
 import java.util.Map;
 
@@ -18,5 +19,9 @@ public final class SessionUtils {
 
     public static ServerData getCurrentServerData(Context context) {
         return context.sessionAttribute(SessionKey.SERVER_DATA);
+    }
+
+    public static String addUnusedMethod() {
+        return "Unused";
     }
 }
