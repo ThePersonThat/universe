@@ -1,4 +1,4 @@
-name: Java build
+name: Project pipeline
 
 on:
   pull_request:

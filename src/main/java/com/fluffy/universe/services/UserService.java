@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public final class UserService {
     private UserService() {}
 
-    private static final int BCRYPT_STRENGTH = Configuration.getAsClass("application.bcryptStrength", Integer.class);
+    private static final int BCRYPT_STRENGTH = 10;
     private static final String INSERT_USER_SQL = "INSERT INTO User "
             + "(RoleID, FirstName, LastName, Email, Password, Gender, Birthday, Address, Website, ResetPasswordToken) VALUES "
             + "(:roleId, :firstName, :lastName, :email, :password, :gender, :birthday, :address, :website, :resetPasswordToken)";
