@@ -39,4 +39,5 @@ jobs:
         with:
           level: 'Error'
           reporter: 'github-pr-check'
+          checkstyle_config: 'sun_checks.xml'
           fail_on_error: true
