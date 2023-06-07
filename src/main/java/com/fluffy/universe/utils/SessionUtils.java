@@ -10,7 +10,7 @@ public final class SessionUtils {
     private SessionUtils() {}
 
     public static User getCurrentUser(Context context) {
-        return context.sessionAttribute("hello");
+        return context.sessionAttribute(SessionKey.USER);
     }
 
     public static Map<String, Object> getCurrentModel(Context context) {
@@ -19,5 +19,9 @@ public final class SessionUtils {
 
     public static ServerData getCurrentServerData(Context context) {
         return context.sessionAttribute(SessionKey.SERVER_DATA);
+    }
+
+    public static String addUnusedMethod() {
+        return "Unused";
     }
 }
