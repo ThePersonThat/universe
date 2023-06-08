@@ -63,6 +63,10 @@ jobs:
       - name: Install selenium-side-runner
         run: npm install -g selenium-side-runner
 
+      - name: Install chrome
+        uses: browser-actions/setup-chrome@latest
+        run: chrome --version
+
       - name: Run app
         run: |
           make migrate
