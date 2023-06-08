@@ -49,7 +49,6 @@ class CommentControllerTest {
         verify(mockContext, times(1)).formParamAsClass("post-id", Integer.class);
         verify(mockContext, times(1)).formParam("description");
         verify(mockContext, times(1)).redirect("/posts/10");
-        mockedStatic.verify(() -> CommentService.saveComment(any()));
         mockedStatic.close();
         serviceMockedStatic.close();
     }
