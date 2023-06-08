@@ -76,8 +76,8 @@ jobs:
           make build
           make run &
 
-#      - name: Run autotests
-#        run: selenium-side-runner -c "chromeOptions.binary='/'"autotest/Uni.side
+      - name: Run autotests
+        run: selenium-side-runner -c "chromeOptions.binary='/usr/local/bin/chromedriver'" autotest/Uni.side
 
   code_quality:
     runs-on: ubuntu-latest
