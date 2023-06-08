@@ -63,10 +63,8 @@ jobs:
       - name: Install selenium-side-runner
         run: npm install -g selenium-side-runner
 
-      - uses: nanasess/setup-chromedriver@v2
-      - run: |
-          export DISPLAY=:99
-          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
+      - uses: browser-actions/setup-chrome@latest
+      - run: chrome --version
 
       - name: Run app
         run: |
