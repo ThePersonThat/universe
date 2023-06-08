@@ -76,7 +76,7 @@ jobs:
           make run &
 
       - name: Run autotests
-        run: selenium-side-runner autotest/Uni.side
+        run: selenium-side-runner --no-sandbox --disable-dev-shm-usage autotest/Uni.side
 
   code_quality:
     runs-on: ubuntu-latest
