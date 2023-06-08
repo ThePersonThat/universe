@@ -65,7 +65,6 @@ jobs:
 
       - name: Install chrome
         uses: browser-actions/setup-chrome@latest
-        run: chrome --version
 
       - name: Run app
         run: |
