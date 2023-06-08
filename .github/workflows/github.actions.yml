@@ -77,7 +77,7 @@ jobs:
           make run &
 
       - name: Run autotests
-        run: $PATH=/usr/local/bin/chromedriver:$PATH selenium-side-runner -c "browserName=chrome" autotest/Uni.side
+        run: selenium-side-runner -c "goog:chromeOptions.binary='/usr/local/bin/chromedriver'" autotest/Uni.side
 
   code_quality:
     runs-on: ubuntu-latest
