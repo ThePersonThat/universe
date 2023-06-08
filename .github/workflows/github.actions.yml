@@ -69,12 +69,19 @@ jobs:
           make build
           make run &
 
-      - name: Install chrome
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@latest
+        with:
+            chrome-version: stable
+
+      - name: Download chrome driver
+        uses: nanasess/setup-chromedriver@master
+
+      - name: Launch chrome driver
         run: |
-          set -ex
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt install ./google-chrome-stable_current_amd64.deb
-          selenium-side-runner -c "chromeOptions.args=[headless,no-sandbox,disable-dev-shm-usage]" -d -t 15000 autotest/Uni.side
+            export DISPLAY=:99
+            chromedriver --url-base=/wd/hub &
+            sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
 
   code_quality:
     runs-on: ubuntu-latest
