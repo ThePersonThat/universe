@@ -76,7 +76,7 @@ jobs:
           make run &
 
       - name: Run autotests
-        run: selenium-side-runner -c \"goog:chromeOptions.args=[headless,no-sandbox,disable-dev-shm-usage] browserName=chrome\" -d -t 15000 autotest/Uni.side
+        run: selenium-side-runner -c "chromeOptions.args=[headless,no-sandbox,disable-dev-shm-usage]" -d -t 15000 autotest/Uni.side
 
   code_quality:
     runs-on: ubuntu-latest
