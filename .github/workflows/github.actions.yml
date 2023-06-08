@@ -76,7 +76,7 @@ jobs:
           make run &
 
       - name: Run autotests
-        run: selenium-side-runner --params="no-sandbox=true disable-dev-shm-usage=true" autotest/Uni.side
+        run: selenium-side-runner -c "no-sandbox=true disable-dev-shm-usage=true" autotest/Uni.side
 
   code_quality:
     runs-on: ubuntu-latest
