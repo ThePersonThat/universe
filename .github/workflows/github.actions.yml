@@ -63,17 +63,16 @@ jobs:
       - name: Install selenium-side-runner
         run: npm install -g selenium-side-runner
 
-      - uses: browser-actions/setup-chrome@latest
-      - run: chrome --version
-
       - name: Run app
         run: |
           make migrate
           make build
           make run &
 
-      - name: Run autotests
-        run: selenium-side-runner -c "chromeOptions.args=[headless,no-sandbox,disable-dev-shm-usage]" -d -t 15000 autotest/Uni.side
+      - uses: browser-actions/setup-chrome@latest
+      - run: |
+          chrome --version
+          selenium-side-runner -c "chromeOptions.args=[headless,no-sandbox,disable-dev-shm-usage]" -d -t 15000 autotest/Uni.side
 
   code_quality:
     runs-on: ubuntu-latest
