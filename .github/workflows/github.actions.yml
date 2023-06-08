@@ -55,11 +55,19 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
+      - name: Install npm
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install selenium-side-runner
+        run: npm install -g selenium-side-runner
+
       - name: Run app
         run: |
           make migrate
           make build
-          make run
+          make run &
 
   code_quality:
     runs-on: ubuntu-latest
