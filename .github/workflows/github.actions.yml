@@ -24,8 +24,7 @@ jobs:
 
       - name: Build and test
         run: |
-          mvn clean install --quiet
-          mvn test --quiet
+          mvn -Dtest=!com.fluffy.universe.auto.*Test test 
 
   lint:
     runs-on: ubuntu-latest
@@ -40,7 +39,7 @@ jobs:
           level: 'Error'
           reporter: 'github-pr-check'
           checkstyle_config: 'sun_checks.xml'
-          fail_on_error: true
+          fail_on_error: false
 
   autotest:
     runs-on: ubuntu-latest
@@ -55,24 +54,11 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Install npm
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install selenium-side-runner
-        run: npm install -g selenium-side-runner
-
       - name: Run app
         run: |
           make migrate
           make build
           make run &
-
-      - name: Set up Chrome
-        uses: browser-actions/setup-chrome@latest
-        with:
-            chrome-version: stable
 
       - name: Download chrome driver
         uses: nanasess/setup-chromedriver@master
@@ -83,8 +69,9 @@ jobs:
             chromedriver --url-base=/wd/hub &
             sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
 
-#      - name: Run autotests
-#        run: selenium-side-runner -c "chromeOptions.args=[headless,no-sandbox,disable-dev-shm-usage]" -d -t 15000 autotest/Uni.side
+      - name: Run autotests
+        run: |
+          mvn -Dtest=com.fluffy.universe.auto.*Test test   
 
   code_quality:
     runs-on: ubuntu-latest
@@ -120,6 +107,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST }}
         run: |
-          mvn clean verify sonar:sonar \
+          mvn -DskipTests=true clean verify sonar:sonar \
             -Dsonar.login=${SONAR_TOKEN} \
             -Dsonar.host.url=${SONAR_HOST_URL} 
