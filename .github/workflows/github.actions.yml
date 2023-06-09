@@ -25,7 +25,7 @@ jobs:
       - name: Build and test
         run: |
           mvn clean
-          mvn test --quiet -Dtest=!com.fluffy.universe.auto* 
+          mvn test --quiet -Dtest=!com.fluffy.universe.auto.* 
 
   lint:
     runs-on: ubuntu-latest
