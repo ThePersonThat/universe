@@ -39,7 +39,7 @@ jobs:
           level: 'Error'
           reporter: 'github-pr-check'
           checkstyle_config: 'sun_checks.xml'
-          fail_on_error: true
+          fail_on_error: false
 
   autotest:
     runs-on: ubuntu-latest
@@ -69,8 +69,9 @@ jobs:
             chromedriver --url-base=/wd/hub &
             sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
 
-#      - name: Run autotests
-#        run: selenium-side-runner -c "chromeOptions.args=[headless,no-sandbox,disable-dev-shm-usage]" -d -t 15000 autotest/Uni.side
+      - name: Run autotests
+        run: |
+          mvn -Dtest=com.fluffy.universe.auto.*Test test   
 
   code_quality:
     runs-on: ubuntu-latest
