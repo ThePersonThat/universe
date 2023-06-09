@@ -24,7 +24,7 @@ jobs:
 
       - name: Build and test
         run: |
-          mvn clean install --quiet
+          mvn clean
           mvn test --quiet -Dtest=!com.fluffy.universe.auto* 
 
   lint:
